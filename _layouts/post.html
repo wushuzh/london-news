@@ -1,15 +1,41 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-  </header>
+  <div class="row">
+    <div class="eight columns">
+      <div class="row">
+        <div class="twelve columns">
 
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
+    <!-- note page.xxx instead of post.title -->
+    <h3>{{ page.title }}</h3>
+
+      <!-- Grid Example -->
+      <div class="row">
+        <div class="twelve columns">
+      {{ content }}      
+        </div>
+      </div>
+
+        </div>
+      </div>
+
+
+    </div>
+   <div class="four columns">
+      
+      <h4>Related Writings</h4>
+      <p>From the archives of this journal:</p>
+      <ul class="disc">
+      <!-- consider latent Semantic Indexing for more relevant post -->
+      <!-- jekyll serve -lsi -->
+      {% for post in site.related_posts limit: 10 %}        
+        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+      </ul>
+
+      <h4>About Edward Hyde</h4>
+      <p>A night owl, citizen of London, of questionable character.</p>
+
+    </div>
   </div>
-
-</article>
